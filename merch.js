@@ -107,7 +107,7 @@
       li.className = "cart-line";
 
       const img = document.createElement("img");
-      img.src = `images/merch/${l.id}.svg`;
+      img.src = `images/merch/${l.id}.jpg`;
       img.alt = "";
       img.width = 56;
       img.height = 56;

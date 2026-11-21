@@ -325,7 +325,7 @@ p { margin: 0 0 1em; }
 .merch-hero { padding: 72px 0 64px; }
 .merch-hero-grid { display: grid; gap: 32px; grid-template-columns: 1fr; align-items: center; }
 @media (min-width: 860px) { .merch-hero-grid { grid-template-columns: 1.3fr 1fr; } }
-.merch-hero-img { width: 100%; max-width: 420px; margin: 0 auto; border-radius: 24px; }
+.merch-hero-img { width: 100%; max-width: 420px; margin: 0 auto; border-radius: 24px; aspect-ratio: 1; object-fit: cover; }
 .merch-facts { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-wrap: wrap; gap: 12px; }
 .merch-facts li { background: rgba(245, 239, 228, .08); border: 1px solid rgba(245, 239, 228, .18); border-radius: 12px; padding: 10px 16px; }
 .merch-facts b { display: block; font-family: var(--mono); font-size: .75rem; font-weight: 500; text-transform: uppercase; letter-spacing: .1em; color: var(--honey); }
@@ -335,7 +335,7 @@ p { margin: 0 0 1em; }
 @media (min-width: 620px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1000px) { .product-grid { grid-template-columns: repeat(4, 1fr); } }
 .product { position: relative; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow); }
-.product img { width: 100%; height: auto; aspect-ratio: 1; display: block; transition: transform .3s ease; }
+.product img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; display: block; transition: transform .3s ease; }
 .product:hover img { transform: scale(1.03); }
 .product-body { padding: 20px 20px 22px; display: flex; flex-direction: column; flex: 1; }
 .product-body h3 { font-size: 1.3rem; margin-bottom: .3em; }
@@ -395,10 +395,18 @@ p { margin: 0 0 1em; }
 .merch-teaser { display: grid; gap: 32px; grid-template-columns: 1fr; align-items: center; }
 @media (min-width: 860px) { .merch-teaser { grid-template-columns: 1fr 1.3fr; } }
 .merch-teaser-imgs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.merch-teaser-imgs img { border-radius: var(--radius); width: 100%; height: auto; aspect-ratio: 1; }
+.merch-teaser-imgs img { border-radius: var(--radius); width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
 
 /* ---------- Who we are video ---------- */
-.who-video { width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: var(--radius); background: var(--forest-deep); box-shadow: 0 20px 50px rgba(0, 0, 0, .35); display: block; }
+/* The frame fixes the box size; the video fills it and can never grow past it. */
+.who-frame { position: relative; width: 100%; margin: 0 auto; border-radius: var(--radius); overflow: hidden; background: var(--forest-deep); box-shadow: 0 20px 50px rgba(0, 0, 0, .35); }
+.who-frame-wide { aspect-ratio: 16 / 9; }
+.who-frame-tall { aspect-ratio: 4 / 5; max-width: min(100%, calc(78vh * 0.8)); display: none; }
+.who-video { position: absolute; inset: 0; width: 100%; height: 100%; max-width: 100%; object-fit: contain; display: block; background: var(--forest-deep); }
+@media (max-width: 640px) {
+  .who-frame-wide { display: none; }
+  .who-frame-tall { display: block; }
+}
 .transcript { margin-top: 20px; text-align: left; }
 .transcript summary { cursor: pointer; font-family: var(--mono); font-size: .85rem; color: var(--honey); text-align: center; }
 .transcript p { margin-top: 12px; color: rgba(245, 239, 228, .8); font-size: .95rem; }

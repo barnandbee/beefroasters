@@ -79,6 +79,41 @@
   #slogan { font-size: 48px; font-style: italic; margin: 22px 0 36px; position: relative; }
   #strike { position: absolute; height: 6px; background: var(--honey); border-radius: 3px; transform-origin: left center; }
   #s8 .mono { font-size: 22px; color: var(--honey); }
+
+  /* ---------- Portrait (4:5) cut for phones: ?portrait ---------- */
+  body.portrait, body.portrait #stage, html.portrait { width: 720px; height: 900px; }
+  .portrait #q { font-size: 76px; }
+  .portrait #cursor { height: 66px; width: 5px; vertical-align: -8px; }
+  .portrait #s2 .center, .portrait #s2 { padding: 0 48px; }
+  .portrait #s2 .were { font-size: 30px; }
+  .portrait #s2 h1 { font-size: 104px; margin: 10px 0 26px; }
+  .portrait #s2 .sub { font-size: 28px; line-height: 1.35; }
+  .portrait #s3 .mono { top: 110px; font-size: 24px; }
+  .portrait #steak { width: 420px; height: 315px; margin: -170px 0 0 -210px; }
+  .portrait #nope { font-size: 88px; border-width: 8px; padding: 0 26px; }
+  .portrait #s3 .foot { bottom: 120px; font-size: 30px; padding: 0 50px; }
+  .portrait #s4 .left { width: 100%; height: 420px; bottom: auto; }
+  .portrait #s4 .right { left: 56px; top: 466px; right: 40px; }
+  .portrait #s4 .mono { font-size: 22px; margin-bottom: 18px; }
+  .portrait #s4 .line { font-size: 62px; }
+  .portrait #s4 .line.it { font-size: 40px; margin-top: 8px; max-width: 520px; }
+  .portrait #s5 .mono { top: 84px; }
+  .portrait .cards { flex-direction: column; align-items: center; top: 150px; gap: 22px; }
+  .portrait .card { width: 580px; height: 150px; flex-direction: row; justify-content: flex-start; gap: 34px; padding-left: 56px; }
+  .portrait .card svg { width: 104px; height: 104px; }
+  .portrait .card span { font-size: 42px; }
+  .portrait #s5 .foot { bottom: 70px; font-size: 32px; padding: 0 50px; }
+  .portrait #s6 .shade { background: linear-gradient(0deg, rgba(29,40,29,.94) 0%, rgba(29,40,29,.6) 42%, rgba(29,40,29,0) 70%); }
+  .portrait #s6 .copy { left: 54px; right: 40px; top: auto; bottom: 80px; transform: none; }
+  .portrait #s6 .line { font-size: 50px; }
+  .portrait #s7 .mono { font-size: 24px; }
+  .portrait #count { font-size: 200px; }
+  .portrait #count small { font-size: 70px; }
+  .portrait #s7 .foot { font-size: 30px; padding: 0 40px; }
+  .portrait #logo { width: 120px; height: 120px; }
+  .portrait #s8 h2 { font-size: 90px; }
+  .portrait #slogan { font-size: 36px; }
+  .portrait #s8 .mono { font-size: 20px; }
 </style>
 </head>
 <body>
@@ -169,6 +204,8 @@
 
 <script>
 const DURATION = 34;
+const PORTRAIT = location.search.includes("portrait");
+if (PORTRAIT) { document.documentElement.classList.add("portrait"); document.body.classList.add("portrait"); }
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
 const prog = (t, start, dur) => clamp((t - start) / dur);
 const easeOut = (p) => 1 - Math.pow(1 - p, 3);
@@ -190,7 +227,10 @@ const ENTER = [
 ];
 
 // Falling beans for scene 4
-const BEANS = [[700, 13.3, -20], [780, 13.45, 25], [860, 13.6, -40], [940, 13.4, 10], [1020, 13.7, 35], [1100, 13.55, -15], [1170, 13.8, 50]];
+const BEANS = PORTRAIT
+  ? [[90, 13.3, -20], [170, 13.45, 25], [250, 13.6, -40], [330, 13.4, 10], [410, 13.7, 35], [490, 13.55, -15], [570, 13.8, 50]]
+  : [[700, 13.3, -20], [780, 13.45, 25], [860, 13.6, -40], [940, 13.4, 10], [1020, 13.7, 35], [1100, 13.55, -15], [1170, 13.8, 50]];
+const BEAN_FLOOR = PORTRAIT ? 885 : 620;
 const beanSvg = '<svg viewBox="0 0 46 64"><ellipse cx="23" cy="32" rx="21" ry="30" fill="#c98a4b"/><path d="M23 4c-9 10 9 18 0 28s9 18 0 28" fill="none" stroke="#2b3a2a" stroke-width="4" stroke-linecap="round"/></svg>';
 BEANS.forEach((b, i) => {
   const el = document.createElement("div");
@@ -237,7 +277,7 @@ function render(t) {
     const p = prog(t, start, .9), el = $("bean" + i);
     // drop with a small bounce at the end
     const fall = p < .75 ? Math.pow(p / .75, 2) : 1 - Math.sin(((p - .75) / .25) * Math.PI) * .06;
-    const y = -80 + fall * (620 - (i % 3) * 18);
+    const y = -80 + fall * (BEAN_FLOOR - (i % 3) * 18);
     el.style.left = x + "px";
     el.style.top = y + "px";
     el.style.opacity = p > 0 ? 1 : 0;

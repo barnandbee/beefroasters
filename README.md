@@ -24,16 +24,29 @@ Plain HTML/CSS/JS with no build step, served by GitHub Pages straight from the r
 | "Why Beef Roasters?" story | `index.html`, About section |
 
 ## "Who are we?" video
-`media/who-we-are.mp4` is rendered from `media/src/who-we-are.html`, an HTML animation driven by a timeline. To change the wording or timing, edit that file and re-render:
+`media/who-we-are.mp4` (16:9, shown on larger screens) and `media/who-we-are-portrait.mp4` (4:5, shown on phones) are rendered from `media/src/who-we-are.html`, an HTML animation driven by a timeline. To change the wording or timing, edit that file and re-render:
 
 ```
-node media/src/render.js
+node media/src/render.js            # both versions
+node media/src/render.js portrait   # just the phone version
 ```
 
-This needs Node with Playwright (Chromium) and ffmpeg. To preview in real time, serve the repo locally and open `media/src/who-we-are.html?play`.
+This needs Node with Playwright (Chromium) and ffmpeg. To preview in real time, serve the repo locally and open `media/src/who-we-are.html?play` (add `&portrait` for the phone layout).
 
 ## Merch images
-The product illustrations in `images/merch/` are SVGs. Swap them for product photos once samples exist (keep the same file names, or update the paths in `merch.html` and `merch.js`).
+`images/merch/*.jpg` are mockups: the Beef Roasters designs printed onto free stock photos of blank products from Unsplash (Unsplash License: free for commercial use, editing allowed, no attribution required). The sticker shot uses the café's own table photo. Base photos, by Unsplash photo ID:
+
+| Image | Unsplash photo ID |
+|---|---|
+| tee | 1521572163474-6864f9cf17ab |
+| mug | 1514228742587-6b1558fcca3d |
+| tote | 1544816155-12df9643f363 |
+| cap | 1588850561407-ed78c282e89b |
+| beanie | 1510598969022-c4c6c5d05769 |
+| cup sleeve | 1577937927133-66ef06acdf18 (original sleeve logo removed) |
+| gift box | 1513885535751-8b9238bd345a |
+
+Replace them with photos of the real samples when they arrive (same file names, square crops).
 
 ## Contact form
 The form opens the visitor's email app with a pre-filled message to `SITE.email`. Nothing is sent from the site itself.
