@@ -1,8 +1,8 @@
 # Pete's Carrots
 
-Website for Pete's Carrots. *We got carrots.*
+Website for Pete's Carrots, a carrot farm in Olinda, in Victoria's Dandenong Ranges. *We got carrots.*
 
-Plain HTML/CSS/JS, no build step. On GitHub Pages it is served at `/beefroasters/carrots/`.
+Plain HTML/CSS/JS, no build step. Font: Josefin Sans (Google Fonts). Colours are set as variables at the top of `styles.css`: aubergine, olive and saffron. On GitHub Pages it is served at `/beefroasters/carrots/`.
 
 ## Pages
 - `index.html`: home page with the carrot range (Big, Giant, Humungous), products (juice, cake, soup), four recipes, photo gallery, blog list and order details
@@ -15,7 +15,7 @@ Plain HTML/CSS/JS, no build step. On GitHub Pages it is served at `/beefroasters
 |---|---|
 | Carrot prices | `index.html`, `#carrots` section |
 | Product prices and sizes | `index.html`, `#products` section |
-| Phone, email, opening hours | `index.html`, `#order` section |
+| Street address, phone, email, opening hours, delivery day | `index.html`, `#visit` section |
 
 ## Photos
 Everything in `images/` is a free stock photo from Unsplash (Unsplash License: free for commercial use, no attribution required). `images/thumbs/` has 640px copies used by the gallery and blog cards. The juice photo is a generic orange juice shot standing in for carrot juice. There was no suitable carrot cake photo, so the cake card uses an inline SVG drawing; swap in a real photo when there is one.
