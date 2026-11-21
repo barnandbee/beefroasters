@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beef Roasters | Coffee roasters in Olinda</title>
+  <meta name="description" content="Beef Roasters is a small-batch coffee roaster and café in Olinda, in Victoria's Dandenong Ranges. We roast coffee, not beef.">
+  <meta name="theme-color" content="#2b3a2a">
+  <meta property="og:title" content="Beef Roasters, Olinda">
+  <meta property="og:description" content="We roast coffee, not beef.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/forest-wide.jpg">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Beef Roasters home">
+        <img src="favicon.svg" alt="" width="34" height="34">
+        <span>Beef Roasters</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Menu</span>
+        <span class="bars" aria-hidden="true"></span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <a href="#menu">Menu</a>
+        <a href="#roasts">Roasts</a>
+        <a href="#visit">Visit</a>
+        <a href="#about">About</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="nav-cta">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <picture>
+        <source media="(min-width: 760px)" srcset="images/forest-wide.jpg">
+        <img class="hero-img" src="images/forest-sm.jpg" alt="Tall mountain ash trees and tree ferns in the forest around Olinda">
+      </picture>
+      <div class="hero-shade"></div>
+      <div class="wrap hero-content">
+        <p class="eyebrow">Small-batch roasters · Olinda, Dandenong Ranges</p>
+        <h1>Beef Roasters</h1>
+        <p class="slogan">We roast coffee, <span class="strike">not beef</span>.</p>
+        <div class="hero-actions">
+          <a class="btn btn-light" href="#menu">See the menu</a>
+          <a class="btn btn-ghost" href="#visit">Find us</a>
+        </div>
+        <p class="open-pill" id="open-status" aria-live="polite">Checking if we're open…</p>
+      </div>
+    </section>
+
+    <!-- BEEF TICKER -->
+    <div class="ticker" aria-label="Beef statistics">
+      <div class="ticker-track">
+        <span>Beef roasted today: <b>0 kg</b></span>
+        <span>Coffee roasted this week: <b>lots</b></span>
+        <span>Steaks on the menu: <b>0</b></span>
+        <span>Days since last beef incident: <b id="days-no-beef">every single one</b></span>
+        <span>Beef roasted today: <b>0 kg</b></span>
+        <span>Coffee roasted this week: <b>lots</b></span>
+        <span>Steaks on the menu: <b>0</b></span>
+        <span>Days since last beef incident: <b>every single one</b></span>
+      </div>
+    </div>
+
+    <!-- MENU -->
+    <section class="section" id="menu">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">The menu</p>
+          <h2>Short menu, done properly.</h2>
+          <p class="lede">Coffee, breakfast tea and breakfast juice. That's it. We'd rather do three things well than thirty things badly.</p>
+        </header>
+
+        <div class="menu-grid">
+          <article class="menu-card">
+            <h3>Coffee</h3>
+            <p class="menu-note">House blend roasted on site. Single origin on rotation, ask what's in the hopper.</p>
+            <ul class="menu-list">
+              <li><span>Espresso</span><i></i><span class="price">$4.20</span></li>
+              <li><span>Piccolo</span><i></i><span class="price">$4.80</span></li>
+              <li><span>Macchiato</span><i></i><span class="price">$4.80</span></li>
+              <li><span>Long black</span><i></i><span class="price">$5.00</span></li>
+              <li><span>Flat white</span><i></i><span class="price">$5.50</span></li>
+              <li><span>Latte</span><i></i><span class="price">$5.50</span></li>
+              <li><span>Cappuccino</span><i></i><span class="price">$5.50</span></li>
+              <li><span>Magic</span><i></i><span class="price">$5.50</span></li>
+              <li><span>Batch brew</span><i></i><span class="price">$5.00</span></li>
+              <li><span>Pour over (single origin)</span><i></i><span class="price">$7.50</span></li>
+            </ul>
+            <p class="menu-extras">Large +$1.00 · Extra shot +$0.80 · Oat, soy or almond +$0.80 · Decaf available</p>
+          </article>
+
+          <article class="menu-card">
+            <h3>Breakfast tea</h3>
+            <p class="menu-note">Strong, malty, loose leaf. Brewed in a pot, served with milk on the side if you want it.</p>
+            <ul class="menu-list">
+              <li><span>Pot of breakfast tea</span><i></i><span class="price">$5.50</span></li>
+              <li><span>Pot for two</span><i></i><span class="price">$9.00</span></li>
+            </ul>
+
+            <h3 class="menu-sub">Breakfast juice</h3>
+            <p class="menu-note">Pressed fresh each morning. When it's gone, it's gone.</p>
+            <ul class="menu-list">
+              <li><span>Breakfast juice, small</span><i></i><span class="price">$6.00</span></li>
+              <li><span>Breakfast juice, large</span><i></i><span class="price">$8.50</span></li>
+            </ul>
+
+            <h3 class="menu-sub">Beans to take home</h3>
+            <ul class="menu-list">
+              <li><span>House blend, 250 g</span><i></i><span class="price">$19.00</span></li>
+              <li><span>Single origin, 250 g</span><i></i><span class="price">$23.00</span></li>
+            </ul>
+          </article>
+
+          <article class="menu-card menu-card-beef" id="beef">
+            <h3>Beef</h3>
+            <p class="menu-note">Our full selection of beef products:</p>
+            <ul class="menu-list menu-list-empty">
+              <li class="empty-state">
+                <span class="empty-icon" aria-hidden="true">∅</span>
+                <span>Nothing. We checked twice.</span>
+              </li>
+            </ul>
+            <button class="btn btn-small" id="beef-btn" type="button">Order the beef</button>
+            <p class="beef-response" id="beef-response" aria-live="polite"></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROASTS -->
+    <section class="section section-dark" id="roasts">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">How would you like it done?</p>
+          <h2>Our roast guide</h2>
+          <p class="lede">We get asked for medium-rare a lot. Here's how our roast levels actually work.</p>
+        </header>
+
+        <div class="roast-scale">
+          <article class="roast roast-light">
+            <span class="roast-swatch" aria-hidden="true"></span>
+            <h3>Light</h3>
+            <p class="roast-not">Not "rare"</p>
+            <p>Bright, fruity, tea-like. Best as a pour over or batch brew. Shows off where the bean came from.</p>
+          </article>
+          <article class="roast roast-medium">
+            <span class="roast-swatch" aria-hidden="true"></span>
+            <h3>Medium</h3>
+            <p class="roast-not">Never "medium-rare"</p>
+            <p>Our house blend. Caramel, cocoa, a bit of stone fruit. Built for milk and for flat whites by the fire.</p>
+          </article>
+          <article class="roast roast-dark">
+            <span class="roast-swatch" aria-hidden="true"></span>
+            <h3>Dark</h3>
+            <p class="roast-not">Not "well done"</p>
+            <p>Rich, chocolatey, low acidity. Roasted for people who like their coffee to taste like coffee.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section" id="gallery">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">Inside</p>
+          <h2>Timber, ceramics and a wood heater.</h2>
+        </header>
+        <div class="gallery">
+          <figure>
+            <img src="images/flat-white-sm.jpg" srcset="images/flat-white-sm.jpg 700w, images/flat-white.jpg 1200w" sizes="(min-width: 900px) 33vw, 100vw" alt="A flat white in a blue-grey handmade ceramic cup on a map coaster" loading="lazy" width="700" height="933">
+            <figcaption>Flat white in a local handmade cup. The coaster is a map of the Ranges.</figcaption>
+          </figure>
+          <figure>
+            <img src="images/wood-heater-sm.jpg" srcset="images/wood-heater-sm.jpg 700w, images/wood-heater.jpg 1200w" sizes="(min-width: 900px) 33vw, 100vw" alt="A ceramic coffee cup on a black wood heater next to a brass floor lamp and timber wall" loading="lazy" width="700" height="933">
+            <figcaption>Best seat in the house, next to the wood heater.</figcaption>
+          </figure>
+          <figure>
+            <img src="images/machine-sm.jpg" srcset="images/machine-sm.jpg 700w, images/machine.jpg 1200w" sizes="(min-width: 900px) 33vw, 100vw" alt="A silver Jura coffee machine on a timber bench" loading="lazy" width="700" height="933">
+            <figcaption>The understudy. Every roastery needs a back-up machine.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISIT -->
+    <section class="section section-timber" id="visit">
+      <div class="wrap visit-grid">
+        <div>
+          <header class="section-head">
+            <p class="eyebrow">Visit</p>
+            <h2>Up the hill in Olinda.</h2>
+          </header>
+          <!-- PLACEHOLDER: replace the address below with the real one -->
+          <address class="visit-address">
+            <strong>Beef Roasters</strong><br>
+            123 Placeholder Road<br>
+            Olinda VIC 3788
+          </address>
+          <p class="visit-note">Street parking out front. It's usually a few degrees colder than Melbourne up here, so bring a jumper.</p>
+
+          <h3>Opening hours</h3>
+          <table class="hours" id="hours-table">
+            <caption class="sr-only">Opening hours</caption>
+            <tbody></tbody>
+          </table>
+          <p class="hours-foot">Hours may change on public holidays. Placeholder hours, to be confirmed.</p>
+          <a class="btn" id="directions-link" href="https://www.google.com/maps/search/?api=1&query=Olinda+VIC+3788" target="_blank" rel="noopener">Get directions</a>
+        </div>
+        <div class="map-frame">
+          <iframe title="Map of Olinda, Victoria" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=145.3500%2C-37.8680%2C145.3840%2C-37.8460&amp;layer=mapnik&amp;marker=-37.8571%2C145.3672"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="wrap about-grid">
+        <div class="about-copy">
+          <p class="eyebrow">About</p>
+          <h2>Why "Beef Roasters"?</h2>
+          <p>It started as a typo on a council form and we decided we liked it better than the name we'd picked. Since then we've had a steady stream of people walk in asking for brisket. We send them out with a flat white instead, and most of them come back.</p>
+          <p>We roast in small batches in the back of the shop, a few times a week, so the beans in your cup are never more than a couple of weeks off the roaster. Our house blend is designed for milk. The single origins rotate with whatever we're excited about.</p>
+          <p>The shop sits among the mountain ash and tree ferns of the Dandenong Ranges. Come in from a walk, sit by the fire and have a coffee. You won't find any beef.</p>
+        </div>
+        <aside class="about-stats" aria-label="Some numbers">
+          <div><b>3</b><span>things on the menu</span></div>
+          <div><b>250 g</b><span>bags of beans to take home</span></div>
+          <div><b>0</b><span>cows harmed in the making of this coffee</span></div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- REVIEWS TEASER -->
+    <section class="section section-dark" id="reviews-teaser">
+      <div class="wrap narrow center">
+        <p class="eyebrow">What people say</p>
+        <blockquote class="pull-quote">
+          <p>"Asked for a rump steak, got the best flat white of my life. Five stars, would be confused again."</p>
+          <footer>Jeff</footer>
+        </blockquote>
+        <a class="btn" href="reviews.html">Read more reviews</a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section-mist" id="faq">
+      <div class="wrap narrow">
+        <header class="section-head">
+          <p class="eyebrow">FAQ</p>
+          <h2>Questions we get asked</h2>
+        </header>
+        <div class="faq">
+          <details>
+            <summary>Do you sell steak?</summary>
+            <p>No. We roast coffee, not beef. It's on the sign, the cups and this website.</p>
+          </details>
+          <details>
+            <summary>Can I get my coffee medium-rare?</summary>
+            <p>We can do you a medium roast. That's as close as we get. See the <a href="#roasts">roast guide</a>.</p>
+          </details>
+          <details>
+            <summary>Is the coffee grass-fed?</summary>
+            <p>The coffee plants are fed with sunshine, rain and mountain soil, so in a way, yes. Please don't ask the barista this before 9am.</p>
+          </details>
+          <details>
+            <summary>Do you have any beef with other cafés?</summary>
+            <p>None at all. The Ranges have plenty of good coffee and we're happy to be part of it.</p>
+          </details>
+          <details>
+            <summary>Do you do food?</summary>
+            <p>No. Coffee, breakfast tea and breakfast juice only. You're welcome to bring a pastry from down the road.</p>
+          </details>
+          <details>
+            <summary>Do you have plant milks?</summary>
+            <p>Yes: oat, soy and almond, for an extra $0.80.</p>
+          </details>
+          <details>
+            <summary>Can I buy your beans wholesale for my café or office?</summary>
+            <p>Yes. Send us a message through the <a href="#contact">contact form</a> and pick "Wholesale beans".</p>
+          </details>
+          <details>
+            <summary>Are dogs welcome?</summary>
+            <p>Well-behaved dogs are welcome at the outdoor tables. Water bowl provided. No beef treats, obviously.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="wrap contact-grid">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>Say hello.</h2>
+          <p class="lede">Wholesale beans, events, general questions or a complaint about the lack of beef. Fill this in and it'll open a ready-to-send email in your mail app.</p>
+          <!-- PLACEHOLDER: replace phone, email and Instagram below and the email in script.js -->
+          <ul class="contact-list">
+            <li><span>Email</span><a href="mailto:hello@example.com" class="js-email">hello@example.com</a></li>
+            <li><span>Phone</span><a href="tel:+61390000000">(03) 9000 0000</a></li>
+            <li><span>Instagram</span><a href="https://instagram.com/" target="_blank" rel="noopener">@beefroasters</a></li>
+          </ul>
+        </div>
+
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="field">
+            <label for="cf-name">Your name</label>
+            <input id="cf-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="cf-email">Your email</label>
+            <input id="cf-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="cf-topic">What's it about?</label>
+            <select id="cf-topic" name="topic">
+              <option>General question</option>
+              <option>Wholesale beans</option>
+              <option>Events &amp; catering</option>
+              <option>Feedback</option>
+              <option>Beef-related complaint</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="5" required></textarea>
+          </div>
+          <p class="form-hint" id="beef-hint" hidden>Noted. We'll read it, but we still won't be selling beef.</p>
+          <p class="form-error" id="form-error" role="alert"></p>
+          <button class="btn" type="submit">Open email</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <p class="footer-brand">Beef Roasters</p>
+        <p>We roast coffee, not beef.</p>
+      </div>
+      <p class="ack">We acknowledge the Wurundjeri Woi-wurrung people, the Traditional Owners of the land on which we roast, and pay our respects to their Elders past and present.</p>
+      <p class="footer-meta">© <span id="year">2026</span> Beef Roasters · Olinda VIC · <a href="#top">Back to top</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
