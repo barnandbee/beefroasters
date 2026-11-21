@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<title>Who are we? (video source)</title>
+<!--
+  Source for media/who-we-are.mp4. Every frame is drawn by render(t) from a
+  timeline, so it renders identically each time. Re-render with:
+    node media/src/render.js
+  (needs Playwright + ffmpeg). Open this file through a local web server and
+  add ?play to the URL to preview it in real time.
+-->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=Work+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root { --forest:#2b3a2a; --deep:#1d281d; --timber:#8c4a26; --honey:#c98a4b; --slate:#6f8797; --mist:#dfe6ea; --cream:#f5efe4; --paper:#fbf8f2; --ink:#221c17; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1280px; height: 720px; overflow: hidden; background: var(--deep); }
+  #stage { position: relative; width: 1280px; height: 720px; overflow: hidden; font-family: "Work Sans", sans-serif; color: var(--cream); }
+  .scene { position: absolute; inset: 0; opacity: 0; overflow: hidden; }
+  .a { will-change: transform, opacity; opacity: 0; }
+  .serif { font-family: "Fraunces", Georgia, serif; }
+  .mono { font-family: "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .14em; }
+  .photo { position: absolute; inset: -4%; width: 108%; height: 108%; object-fit: cover; }
+  .shade { position: absolute; inset: 0; }
+  .center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+
+  /* S1 + S2 forest */
+  #s-forest .shade { background: radial-gradient(ellipse at center, rgba(29,40,29,.45), rgba(29,40,29,.85)); }
+  #q { font-size: 108px; font-weight: 800; letter-spacing: -.02em; }
+  #cursor { display: inline-block; width: 6px; height: 96px; background: var(--honey); margin-left: 8px; vertical-align: -10px; }
+  #s2 .were { font-size: 34px; font-style: italic; }
+  #s2 h1 { font-size: 150px; font-weight: 800; letter-spacing: -.03em; line-height: 1; margin: 8px 0 22px; }
+  #s2 .sub { font-size: 30px; }
+  #s2 .sub b { color: var(--honey); font-weight: 600; }
+
+  /* S3 steak */
+  #s3 { background: var(--cream); color: var(--ink); }
+  #s3 .mono { position: absolute; top: 90px; width: 100%; text-align: center; font-size: 26px; color: var(--timber); }
+  #steak { position: absolute; left: 50%; top: 52%; width: 440px; height: 330px; margin: -165px 0 0 -220px; }
+  #nope { position: absolute; left: 66%; top: 66%; font-size: 120px; font-weight: 800; color: var(--timber); border: 10px solid var(--timber); padding: 0 34px; border-radius: 18px; transform-origin: center; }
+  #s3 .foot { position: absolute; bottom: 70px; width: 100%; text-align: center; font-size: 30px; font-style: italic; }
+
+  /* S4 coffee */
+  #s4 { background: var(--forest); }
+  #s4 .left { position: absolute; left: 0; top: 0; bottom: 0; width: 560px; overflow: hidden; }
+  #s4 .left img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  #s4 .right { position: absolute; left: 640px; top: 120px; right: 60px; }
+  #s4 .mono { font-size: 24px; color: var(--honey); margin-bottom: 30px; }
+  #s4 .line { font-size: 76px; font-weight: 800; line-height: 1.12; }
+  #s4 .line.it { font-style: italic; font-weight: 600; color: var(--honey); font-size: 56px; margin-top: 10px; }
+  .bean { position: absolute; width: 46px; height: 64px; }
+
+  /* S5 menu */
+  #s5 { background: var(--mist); color: var(--ink); }
+  #s5 .mono { position: absolute; top: 80px; width: 100%; text-align: center; font-size: 26px; color: var(--timber); }
+  .cards { position: absolute; top: 170px; left: 0; right: 0; display: flex; justify-content: center; gap: 40px; }
+  .card { width: 330px; height: 330px; background: #fff; border-radius: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; box-shadow: 0 14px 40px rgba(34,28,23,.12); }
+  .card svg { width: 140px; height: 140px; }
+  .card span { font-family: "Fraunces", serif; font-size: 40px; font-weight: 800; }
+  #s5 .foot { position: absolute; bottom: 74px; width: 100%; text-align: center; font-size: 36px; font-style: italic; color: var(--forest); }
+
+  /* S6 fire */
+  #s6 .shade { background: linear-gradient(90deg, rgba(29,40,29,.92) 0%, rgba(29,40,29,.6) 45%, rgba(29,40,29,0) 75%); }
+  #s6 .copy { position: absolute; left: 90px; top: 50%; transform: translateY(-50%); }
+  #s6 .line { font-size: 72px; font-weight: 800; line-height: 1.15; }
+  #s6 .line:last-child { color: var(--honey); font-style: italic; font-weight: 600; }
+
+  /* S7 counter */
+  #s7 { background: var(--deep); }
+  #s7 .mono { font-size: 30px; color: var(--honey); margin-bottom: 20px; }
+  #count { font-size: 260px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+  #count small { font-size: 90px; color: var(--honey); margin-left: 20px; }
+  #s7 .foot { font-size: 34px; font-style: italic; margin-top: 26px; }
+
+  /* S8 end card */
+  #s8 { background: var(--forest); }
+  #logo { width: 150px; height: 150px; margin-bottom: 26px; }
+  #s8 h2 { font-size: 120px; font-weight: 800; letter-spacing: -.03em; line-height: 1; }
+  #slogan { font-size: 48px; font-style: italic; margin: 22px 0 36px; position: relative; }
+  #strike { position: absolute; height: 6px; background: var(--honey); border-radius: 3px; transform-origin: left center; }
+  #s8 .mono { font-size: 22px; color: var(--honey); }
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <section class="scene" id="s-forest">
+    <img class="photo" id="forest" src="../../images/forest-wide.jpg" alt="">
+    <div class="shade"></div>
+    <div class="center" id="s1"><div class="serif" id="q"><span id="qtext"></span><span id="cursor"></span></div></div>
+    <div class="center" id="s2">
+      <p class="serif were a" id="s2a">Hi. We're</p>
+      <h1 class="serif a" id="s2b">Beef Roasters</h1>
+      <p class="sub a" id="s2c">A small coffee roaster in <b>Olinda</b>, up in the Dandenong Ranges.</p>
+    </div>
+  </section>
+
+  <section class="scene" id="s3">
+    <p class="mono a" id="s3a">What we don't roast</p>
+    <svg id="steak" class="a" viewBox="0 0 440 330" aria-hidden="true">
+      <path d="M60 170 C40 80 150 30 250 45 C350 60 410 120 395 200 C380 280 290 305 200 290 C110 280 75 240 60 170 Z" fill="#b5523b"/>
+      <path d="M60 170 C40 80 150 30 250 45 C350 60 410 120 395 200 C380 280 290 305 200 290 C110 280 75 240 60 170 Z" fill="none" stroke="#f3e2d3" stroke-width="16"/>
+      <path d="M120 120 C170 150 230 140 260 110 M140 220 C190 200 260 215 320 190" stroke="#e7a08a" stroke-width="7" fill="none" stroke-linecap="round" opacity=".7"/>
+      <circle cx="285" cy="165" r="30" fill="#f3e2d3"/><circle cx="285" cy="165" r="14" fill="#e9cdb5"/>
+      <line id="x1" x1="40" y1="30" x2="400" y2="300" stroke="#2b3a2a" stroke-width="22" stroke-linecap="round" stroke-dasharray="460" stroke-dashoffset="460"/>
+      <line id="x2" x1="400" y1="30" x2="40" y2="300" stroke="#2b3a2a" stroke-width="22" stroke-linecap="round" stroke-dasharray="460" stroke-dashoffset="460"/>
+    </svg>
+    <div class="serif a" id="nope">NOPE.</div>
+    <p class="serif foot a" id="s3b">Despite the name. Every single day.</p>
+  </section>
+
+  <section class="scene" id="s4">
+    <div class="left"><img id="fw" src="../../images/flat-white.jpg" alt=""></div>
+    <div class="right">
+      <p class="mono a" id="s4a">What we do roast</p>
+      <p class="serif line a" id="s4b">Coffee.</p>
+      <p class="serif line a" id="s4c">Small batches.</p>
+      <p class="serif line it a" id="s4d">A few times a week, out the back.</p>
+    </div>
+    <div id="beans"></div>
+  </section>
+
+  <section class="scene" id="s5">
+    <p class="mono a" id="s5a">The whole menu</p>
+    <div class="cards">
+      <div class="card a" id="c1">
+        <svg viewBox="0 0 140 140"><path d="M28 50 h74 v38 a30 30 0 0 1 -30 30 h-14 a30 30 0 0 1 -30 -30 Z" fill="#6f8797"/><path d="M102 60 c26 0 26 34 0 34" fill="none" stroke="#6f8797" stroke-width="10"/><ellipse cx="65" cy="51" rx="37" ry="7" fill="#4a2a18"/><path d="M50 36 c-6-8 6-12 0-22 M66 36 c-6-8 6-12 0-22 M82 36 c-6-8 6-12 0-22" stroke="#c98a4b" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
+        <span>Coffee</span>
+      </div>
+      <div class="card a" id="c2">
+        <svg viewBox="0 0 140 140"><ellipse cx="66" cy="84" rx="44" ry="36" fill="#8c4a26"/><rect x="50" y="40" width="32" height="12" rx="5" fill="#5e3018"/><circle cx="66" cy="36" r="7" fill="#5e3018"/><path d="M108 76 l22 -16" stroke="#8c4a26" stroke-width="10" stroke-linecap="round"/><path d="M24 70 c-22 0 -22 30 0 30" fill="none" stroke="#8c4a26" stroke-width="9"/><path d="M40 84 h52" stroke="#f5efe4" stroke-width="4" opacity=".5"/></svg>
+        <span>Breakfast tea</span>
+      </div>
+      <div class="card a" id="c3">
+        <svg viewBox="0 0 140 140"><path d="M38 30 h64 l-8 92 h-48 Z" fill="#f5efe4" stroke="#d9cdb9" stroke-width="4"/><path d="M43 58 h54 l-5.5 62 h-43 Z" fill="#e9a23b"/><circle cx="100" cy="34" r="20" fill="#f2b84b"/><circle cx="100" cy="34" r="13" fill="#f7d27e"/><path d="M78 20 l-14 -14" stroke="#6f8a4e" stroke-width="5" stroke-linecap="round"/></svg>
+        <span>Breakfast juice</span>
+      </div>
+    </div>
+    <p class="serif foot a" id="s5b">That's it. Three things, done properly.</p>
+  </section>
+
+  <section class="scene" id="s6">
+    <img class="photo" id="fire" src="../../images/wood-heater.jpg" alt="" style="object-position: center 75%">
+    <div class="shade"></div>
+    <div class="copy">
+      <p class="serif line a" id="s6a">Come in from the forest.</p>
+      <p class="serif line a" id="s6b">Sit by the fire.</p>
+      <p class="serif line a" id="s6c">Have a coffee.</p>
+    </div>
+  </section>
+
+  <section class="scene" id="s7">
+    <div class="center">
+      <p class="mono a" id="s7a">Beef roasted since opening</p>
+      <div class="serif a" id="count"><span id="num">0</span><small>kg</small></div>
+      <p class="serif foot a" id="s7b">And we'd like to keep it that way.</p>
+    </div>
+  </section>
+
+  <section class="scene" id="s8">
+    <div class="center">
+      <svg id="logo" class="a" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="31" fill="#f5efe4"/><g transform="rotate(-30 32 32)"><ellipse cx="32" cy="32" rx="14" ry="20" fill="#c98a4b"/><path d="M32 13c-6 7 6 13 0 19s6 13 0 19" fill="none" stroke="#2b3a2a" stroke-width="3" stroke-linecap="round"/></g></svg>
+      <h2 class="serif a" id="s8a">Beef Roasters</h2>
+      <p class="serif a" id="slogan">We roast coffee, <span id="notbeef">not beef</span>.<span id="strike"></span></p>
+      <p class="mono a" id="s8b">Olinda · Dandenong Ranges</p>
+    </div>
+  </section>
+</div>
+
+<script>
+const DURATION = 34;
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const prog = (t, start, dur) => clamp((t - start) / dur);
+const easeOut = (p) => 1 - Math.pow(1 - p, 3);
+const easeInOut = (p) => (p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2);
+const backOut = (p) => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(p - 1, 3) + c1 * Math.pow(p - 1, 2); };
+const $ = (id) => document.getElementById(id);
+
+// Scene windows [id, in, out]
+const SCENES = [["s-forest", 0, 8.2], ["s3", 8.0, 12.6], ["s4", 12.4, 17.4], ["s5", 17.2, 21.6], ["s6", 21.4, 25.6], ["s7", 25.4, 29.2], ["s8", 29.0, 99]];
+// Element entrances [id, start, kind, dur]
+const ENTER = [
+  ["s2a", 4.3, "up"], ["s2b", 4.55, "up", .7], ["s2c", 5.3, "up"],
+  ["s3a", 8.4, "up"], ["steak", 8.7, "pop", .6], ["s3b", 11.0, "up"],
+  ["s4a", 12.9, "up"], ["s4b", 14.3, "up"], ["s4c", 14.8, "up"], ["s4d", 15.4, "up"],
+  ["s5a", 17.5, "up"], ["c1", 17.9, "pop"], ["c2", 18.3, "pop"], ["c3", 18.7, "pop"], ["s5b", 19.5, "up"],
+  ["s6a", 22.0, "up"], ["s6b", 22.7, "up"], ["s6c", 23.4, "up"],
+  ["s7a", 25.7, "up"], ["count", 26.0, "pop", .5], ["s7b", 28.0, "up"],
+  ["logo", 29.3, "pop", .6], ["s8a", 29.7, "up", .7], ["slogan", 30.2, "up"], ["s8b", 31.6, "up"],
+];
+
+// Falling beans for scene 4
+const BEANS = [[700, 13.3, -20], [780, 13.45, 25], [860, 13.6, -40], [940, 13.4, 10], [1020, 13.7, 35], [1100, 13.55, -15], [1170, 13.8, 50]];
+const beanSvg = '<svg viewBox="0 0 46 64"><ellipse cx="23" cy="32" rx="21" ry="30" fill="#c98a4b"/><path d="M23 4c-9 10 9 18 0 28s9 18 0 28" fill="none" stroke="#2b3a2a" stroke-width="4" stroke-linecap="round"/></svg>';
+BEANS.forEach((b, i) => {
+  const el = document.createElement("div");
+  el.className = "bean"; el.id = "bean" + i; el.innerHTML = beanSvg;
+  $("beans").append(el);
+});
+
+function render(t) {
+  SCENES.forEach(([id, a, b]) => {
+    const o = Math.min(prog(t, a, .4), 1 - prog(t, b - .4, .4));
+    $(id).style.opacity = o;
+  });
+
+  ENTER.forEach(([id, start, kind, dur = .55]) => {
+    const p = prog(t, start, dur), el = $(id);
+    if (kind === "up") {
+      el.style.opacity = easeOut(p);
+      el.style.transform = `translateY(${(1 - easeOut(p)) * 40}px)`;
+    } else {
+      el.style.opacity = clamp(p * 2);
+      el.style.transform = `scale(${0.5 + 0.5 * backOut(p)})`;
+    }
+  });
+
+  // S1: typing "Who are we?" then fade before S2 text
+  const q = "Who are we?";
+  const n = Math.floor(prog(t, .5, 1.4) * q.length);
+  $("qtext").textContent = q.slice(0, n);
+  $("cursor").style.opacity = (n < q.length || Math.floor(t * 2.5) % 2 === 0) ? 1 : 0;
+  $("s1").style.opacity = 1 - prog(t, 3.5, .5);
+  $("s1").style.transform = `translateY(${-prog(t, 3.5, .5) * 40}px)`;
+  $("forest").style.transform = `scale(${1.12 - 0.08 * prog(t, 0, 8.2)}) translateY(${prog(t, 0, 8.2) * 12}px)`;
+
+  // S3: cross out the steak, stamp NOPE
+  $("x1").style.strokeDashoffset = 460 * (1 - easeInOut(prog(t, 9.6, .35)));
+  $("x2").style.strokeDashoffset = 460 * (1 - easeInOut(prog(t, 9.95, .35)));
+  const sp = prog(t, 10.4, .3);
+  $("nope").style.opacity = clamp(sp * 3);
+  $("nope").style.transform = `translate(-50%, -50%) rotate(-12deg) scale(${2.2 - 1.2 * easeOut(sp)})`;
+
+  // S4: Ken Burns + falling beans
+  $("fw").style.transform = `scale(${1.05 + 0.1 * prog(t, 12.4, 5)}) translateY(${-prog(t, 12.4, 5) * 20}px)`;
+  BEANS.forEach(([x, start, rot], i) => {
+    const p = prog(t, start, .9), el = $("bean" + i);
+    // drop with a small bounce at the end
+    const fall = p < .75 ? Math.pow(p / .75, 2) : 1 - Math.sin(((p - .75) / .25) * Math.PI) * .06;
+    const y = -80 + fall * (620 - (i % 3) * 18);
+    el.style.left = x + "px";
+    el.style.top = y + "px";
+    el.style.opacity = p > 0 ? 1 : 0;
+    el.style.transform = `rotate(${rot + (1 - fall) * 160}deg)`;
+  });
+
+  // S6: slow push in on the fire
+  $("fire").style.transform = `scale(${1.04 + 0.1 * prog(t, 21.4, 4.2)}) translateX(${-prog(t, 21.4, 4.2) * 24}px)`;
+
+  // S7: counter spins like it's going somewhere, then lands on 0
+  let num = 0;
+  if (t > 26.1 && t < 27.6) {
+    const f = Math.floor(t * 30);
+    const spread = 1 - prog(t, 26.1, 1.5); // smaller numbers as it slows
+    num = Math.floor(Math.abs(Math.sin(f * 12.9898) * 43758.5453) % (999 * spread + 1));
+  }
+  $("num").textContent = num;
+
+  // S8: strike through "not beef"
+  const nb = $("notbeef"), sl = $("slogan");
+  const r = nb.getBoundingClientRect(), rs = sl.getBoundingClientRect();
+  const scale = rs.width / sl.offsetWidth || 1;
+  const st = $("strike");
+  st.style.left = (r.left - rs.left) / scale - 6 + "px";
+  st.style.width = r.width / scale + 12 + "px";
+  st.style.top = (r.top - rs.top) / scale + (r.height / scale) * .55 + "px";
+  st.style.transform = `rotate(-3deg) scaleX(${easeOut(prog(t, 31.0, .5))})`;
+}
+
+window.render = render;
+window.DURATION = DURATION;
+render(0);
+
+if (location.search.includes("play")) {
+  const t0 = performance.now();
+  const loop = () => { render(((performance.now() - t0) / 1000) % DURATION); requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+}
+</script>
+</body>
+</html>
