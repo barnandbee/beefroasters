@@ -9,6 +9,7 @@ Plain HTML/CSS/JS with no build step, served by GitHub Pages straight from the r
 - `reviews.html` – customer reviews
 - `merch.html` – merch preorders (cart saved in the browser, order sent as a pre-filled email)
 - `404.html` – not-found page (paths assume the site lives at `/beefroasters/`)
+- `carrots/` – a separate site for Pete's Carrots (see `carrots/README.md`)
 
 ## Placeholders to replace
 | What | Where |
